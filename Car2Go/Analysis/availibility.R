@@ -1,3 +1,7 @@
+# Analysis of Car2Go Data in Washington D.C.
+# For: DCist.com
+# Author: Randy Smith
+
 library(rgdal)
 library(lubridate)
 library(tidyverse)
