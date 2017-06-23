@@ -145,26 +145,14 @@ c2g_trips <- merge(x = car2go_trips, y = trip, by = "UID", all.x = TRUE, all.y =
   na.omit()
 
 
-
-
 #-------------------------------------------------------------------------------------------------------------
+# Summaries and Vignettes of Data
 
-route <- gmapsdistance(origin = str_c(c2g_trips$pLat, c2g_trips$pLon, sep = ","), 
-                       destination = str_c(c2g_trips$dLat, c2g_trips$dLon, sep = ","), 
-                       combinations = 'pairwise', 
-                       mode = 'driving',
-                       key = 'AIzaSyCLDsY7fgqGlQffr917Rqx7NUL42lGT_lM')
 
-route <- data.frame(route$Distance) 
-
-c2g_trips$distance <- route$Distance
-
+# Calculate trip time
 c2g_trips <- c2g_trips %>% 
   mutate(time_taken = time_length(interval(pTime,dTime), "seconds"),
          time_taken_min = time_taken / 60)
-
-#-------------------------------------------------------------------------------------------------------------
-# Summaries and Vignettes of Data
 
 # Summary By neighborhood
 hood_sum <- c2g_trips %>% 
